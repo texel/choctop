@@ -13,7 +13,7 @@ module ChocTop
     end
   
     def info_plist
-      @info_plist ||= OSX::NSDictionary.dictionaryWithContentsOfFile(info_plist_path) || {}
+      @info_plist ||= Plist.parse_xml(info_plist_path) || {}
     end
   
     def parse_version

@@ -57,7 +57,8 @@ module ChocTop
 
     def background_bounds
       return [400, 300] unless background_file
-      background = OSX::NSImage.alloc.initByReferencingFile(background_file).size.to_a
+      bounds = `choctop-tool image_size background_file`
+      background = bounds.split(",").map { |b| b.to_i }
       [background.first, background.last + statusbar_height]
     end
 
@@ -144,9 +145,9 @@ module ChocTop
       SCRIPT
       if applications_icon
         applications_path = "#{volume_path}/Applications"
-        OSX::NSApplicationLoad()
-        image = OSX::NSImage.alloc.initWithContentsOfFile(applications_icon)
-        OSX::NSWorkspace.sharedWorkspace.setIcon_forFile_options(image, applications_path, nil)
+        # image = NSImage.alloc.initWithContentsOfFile(applications_icon)
+        # NSWorkspace.sharedWorkspace.setIcon_forFile_options(image, applications_path, nil)
+        `choctop-tool set_icon #{applications_icon} #{applications_path}`
       end
     end
 

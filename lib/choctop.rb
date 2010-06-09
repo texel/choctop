@@ -3,8 +3,8 @@ require "yaml"
 require "builder"
 require "erb"
 require "uri"
-require "osx/cocoa"
 require "RedCloth"
+require "plist"
 
 require 'choctop/appcast'
 require 'choctop/dmg'
@@ -237,7 +237,7 @@ module ChocTop
     end
     
     def info_plist
-      @info_plist ||= OSX::NSDictionary.dictionaryWithContentsOfFile(info_plist_path) || {}
+      @info_plist ||= Plist.parse_xml(info_plist_path) || {}
     end
   
     # Add an explicit file/bundle/folder into the DMG
