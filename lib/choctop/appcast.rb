@@ -4,7 +4,7 @@ module ChocTop
       if skip_build
         puts "Skipping build task..."
       else
-        sh "xcodebuild -configuration #{build_type} -target #{build_target} #{build_opts}"
+        sh %Q{xcodebuild -configuration #{build_type} -target "#{build_target}" #{build_opts}}
       end
     end
 
