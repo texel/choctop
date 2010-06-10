@@ -57,7 +57,7 @@ module ChocTop
 
     def background_bounds
       return [400, 300] unless background_file
-      bounds = `choctop-tool image_size background_file`
+      bounds = `choctop-tool image_size "#{background_file}"`
       background = bounds.split(",").map { |b| b.to_i }
       [background.first, background.last + statusbar_height]
     end
