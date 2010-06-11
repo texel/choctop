@@ -1,3 +1,6 @@
 [submodule "website"]
 	path = website
 	url = git@github.com:drnic/choctop.git
+[submodule "choctop-tool"]
+	path = choctop-tool
+	url = git://github.com/texel/choctop-tool.git
